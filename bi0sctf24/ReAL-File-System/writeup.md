@@ -1,6 +1,6 @@
 ## Writeup
 
-Description 
+Description
 
 ###### Here are some extra materials you might find useful
 
@@ -14,14 +14,13 @@ Description
 
 - [ReFS Detector](https://github.com/jamemanionda/ReFS_Detector)
 
+---
 
-----------
-  
 - `Active Disk Editor` supports the Resilient File System, so can be used for loading the image to verify whether it's corrupted or not.
 
-
 ![alt text](assests/image-200.png)
-### Fix FileSystem
+
+##### Let's begin repairing the file system.
 
 ![alt text](assests/image-104.png)
 
@@ -33,6 +32,14 @@ Description
 
 `Cluster Size : 0x1000`
 
+![alt text](./assests/image-333.png)
+
+- The LCN(1) serves as a way to locate the associated SuperBlock, just like it does for the Checkpoint.
+
+- Within the system, there are three SuperBlocks and two Checkpoints. 
+
+- Fixing either one of the SuperBlocks or Checkpoints will resolve the issue.
+
 ![alt text](assests/image-101.png)
 
 ![alt text](assests/image-102.png)
@@ -43,10 +50,7 @@ Description
 
 ![alt text](assests/image.png)
 
-
-
 - Everything is working fine when loading it into `Active Disk Editor`
-
 
 ![alt text](assests/image-105.png)
 
@@ -109,14 +113,13 @@ dd if=ReAL_File_System.001 skip=$((0x20001000)) count=$((0x200A7000 -0x20001000)
 
    > **Format :[ ['OriginalDirName', 'RenamedDirName', TimeStamp] , .. ]**
 
-<details>
-    <summary> Directory Renamed Opcodes</summary>
+
+To identify renamed directories, search for the opcodes associated with directory renaming. Following these opcodes' consecutive MLog entries will unveil the timestamps indicating when the renaming occurred.
+
 
 ```
 0x2 -> 0x2 -> 0x1 -> 0x1 -> 0x4
 ```
-
-</details>
 
 ![alt text](assests/image-38.png)
 
@@ -147,20 +150,18 @@ Similarly,
 
    > **Format : [ ['DirectoryName' , 'TimeStamp'] , .. ]**
 
-<details>
-    <summary> Permanent Directory Deletion Opcodes</summary>
+
 
 ```bash
 0x2 -> 0xf -> 0x2 -> 0xf -> 0x4 -> 0x12
 ```
 
-</details>
 
 ![alt text](assests/image-44.png)
 
 ![alt text](assests/image-41.png)
 
-Next, the remaining opcodes can be found in `MLog`.
+Remaining opcodes can be found in `MLog`.
 
 ![alt text](assests/image-42.png)
 
@@ -199,7 +200,7 @@ P(Directory Creation) → 0x06 → 0x04 → 0x04 → 0x04 → 0x04 → 0x03 → 
 ![alt text](assests/image-47.png)
 
 ```py
- ('c062fb828', '2024-02-18 13:10:48.62')
+ ['c062fb828', '2024-02-18 13:10:48.62']
 ```
 
 OR,
@@ -340,7 +341,6 @@ TimeStamp
 
 In the same manner, examine the log file for each alternate file.
 
-
 ```py
 ['simple-pass.txt','2024-02-18 13:15:00.51','Simple'],
 ['19ff211f','2024-02-18 13:14:31.43','Simple'],
@@ -395,7 +395,6 @@ In the same manner, examine the log file for each alternate file.
 
 Because it updates the time before encrypting the files, it leaves a trace in the log files that could potentially be used to recover key.
 
-
 ![alt text](./assests/image-216.png)
 ![alt text](./assests/image-217.png)
 ![alt text](./assests/image-218.png)
@@ -407,13 +406,11 @@ Because it updates the time before encrypting the files, it leaves a trace in th
 
 > Opcode for Renamed File : **`0x02 → 0x05 → 0x01 → 0x04 → 0x04`**
 
-- Let's manually search for the required information. We'll begin by assigning filenames with the extension `tort` and then conduct a search within the log file. 
+- Let's manually search for the required information. We'll begin by assigning filenames with the extension `tort` and then conduct a search within the log file.
 
-- Specifically, we'll focus on identifying the first operation code (opcode) located at offset `0xb0`. 
+- Specifically, we'll focus on identifying the first operation code (opcode) located at offset `0xb0`.
 
 - After locating it, we'll parse the data and examine the previous MLog to find the corresponding filenames.
-
-
 
 ![alt text](assests/image-1.png)
 
@@ -446,7 +443,6 @@ Enc Key : 2010 2 2 26 12 38 43 0
 Third Rename : _`0cf51fbc -> 0cf51fbc.tort`_
 
 > Likewise, find the timestamp used for encryption on all remaining files, and proceed to extract those files accordingly.
-
 
 `binary-01.gif -> c7982ef6 -> a917438f -> a917438f.tort` : **1995 2 2 27 2 11 42 0**
 
@@ -493,7 +489,6 @@ dd if=ReAL_File_System.001 skip=$(((0x10025000)/64)) count=$(((0x89ce40)/64))  b
 ```
 
 After extracting the encrypted files, remove any additional bytes.
-
 
 ![alt text](assests/image-28.png)
 
