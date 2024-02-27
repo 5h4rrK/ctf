@@ -1,6 +1,8 @@
 ## Writeup
 
-## Recommended Reading
+Description 
+
+###### Here are some extra materials you might find useful to read.
 
 - [Deletion Pattern in ReFS](https://www.sciencedirect.com/science/article/pii/S2666281723001191?ref=pdf_download&fr=RR-2&rr=857d87e5a8047866)
 
@@ -172,7 +174,7 @@ P(Directory Creation) → 0x06 → 0x04 → 0x04 → 0x04 → 0x04 → 0x03 → 
 
 </details>
 
-![alt text](image-13.png)
+![alt text](./assests/image-213.png)
 
 ![alt text](assests/image-45.png)
 
@@ -391,13 +393,13 @@ Analyze it for every other files.
 
 > Opcode for Renamed File : **`0x02 → 0x05 → 0x01 → 0x04 → 0x04`**
 
-Let's try to find it manually.
+- Let's manually search for the required information. We'll begin by assigning filenames with the extension `tort` and then conduct a search within the log file. 
 
-The process involves assigning filenames with `tort` extensions, and we'll conduct a search for it within the log file.
+- Specifically, we'll focus on identifying the first operation code (opcode) located at offset `0xb0`. 
 
-`0x04` : Redo Update with Root with timestamp (in new MLog File)
+- After locating it, we'll parse the data and examine the previous MLog to find the corresponding filenames.
 
-We know the first opcode is at offset `0xb0`. let's try to parse it and look at it previous `MLog` to find the nammes.
+
 
 ![alt text](assests/image-1.png)
 
@@ -453,7 +455,7 @@ Third Rename : _`0cf51fbc -> 0cf51fbc.tort`_
 
 ###### 0cf51fbc.tort
 
-Let's examine it using _Active Disk Editor_
+Let's take a look at it using Active Disk Editor.
 
 ![alt text](assests/image-20.png)
 
@@ -469,15 +471,14 @@ dd if=ReAL_File_System.001 skip=$(((0x11001000)/4096)) count=$(((0x141000)/4096)
 cat 0cf51fbc_1.tort 0cf51fbc_2.tort > 0cf51fbc.tort
 ```
 
-- Eliminate the ~~null~~ bytes from **`0cf51fbc_2`** resulting from the block size.
-
 ###### a917438f.tort
 
 ```bash
 dd if=ReAL_File_System.001 skip=$(((0x10025000)/64)) count=$(((0x89ce40)/64))  bs=64 of=a917438f.tort
 ```
 
-Remove trailing bytes after extracting..
+After extracting the encrypted files, remove any additional bytes.
+
 
 ![alt text](assests/image-28.png)
 
@@ -498,11 +499,6 @@ Go to offset `0x108c2000`, `0x10c05000` & read `830 * 0x1000` ,`130 * 0x1000`byt
 
  dd if=ReAL_File_System.001 skip=$(((0x10c05000)/4096)) count=$(((130 * 0x1000)/4096))  bs=4096 of=7a6c7166_2.tort
 
-```
-
-![alt text](assests/image-35.png)
-
-```bash
 cat 7a6c7166_1.tort 7a6c7166_2.tort > 7a6c7166.tort
 ```
 
