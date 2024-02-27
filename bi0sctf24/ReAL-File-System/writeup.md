@@ -2,7 +2,7 @@
 
 Description 
 
-###### Here are some extra materials you might find useful to read.
+###### Here are some extra materials you might find useful
 
 - [Deletion Pattern in ReFS](https://www.sciencedirect.com/science/article/pii/S2666281723001191?ref=pdf_download&fr=RR-2&rr=857d87e5a8047866)
 
@@ -12,6 +12,15 @@ Description
 
 - [Awesome ReFS Investigation tool](https://github.com/horensic/ARIN)
 
+- [ReFS Detector](https://github.com/jamemanionda/ReFS_Detector)
+
+
+----------
+  
+- `Active Disk Editor` supports the Resilient File System, so can be used for loading the image to verify whether it's corrupted or not.
+
+
+![alt text](assests/image-200.png)
 ### Fix FileSystem
 
 ![alt text](assests/image-104.png)
@@ -34,9 +43,10 @@ Description
 
 ![alt text](assests/image.png)
 
-- Loading it into `Active Disk Editor` appears to be functioning smoothly.
 
-![alt text](assests/image-200.png)
+
+- Everything is working fine when loading it into `Active Disk Editor`
+
 
 ![alt text](assests/image-105.png)
 
@@ -328,7 +338,8 @@ TimeStamp
 
 `2024-02-18 13:15:00.51`
 
-Analyze it for every other files.
+In the same manner, examine the log file for each alternate file.
+
 
 ```py
 ['simple-pass.txt','2024-02-18 13:15:00.51','Simple'],
@@ -374,13 +385,16 @@ Analyze it for every other files.
 
 ---
 
-- First, Enumerates each directory and rename all the files.
-- Then, Generates a random time and changes it to `SystemToFileTime` and generates `key1` and adds 4 bytes nonce
-- Takes md5sum of `key1` and set it as `key2`
-- Again rename each file with random time and then encrypts the file
-- **Encryption** : `enc[i] = file[i] ^ key1[i] ^ key2[i]`
-- Lastly, enumerate all files and updates the file names with `tort` extension.
-- Before exiting, again updates the system time to initial time.
+1. Enumerate each directory and rename all files.
+2. Generate a random time and convert it to `SystemToFileTime`. Generate `key1` and append a 4-byte nonce.
+3. Compute the MD5 hash of `key1` and set it as `key2`.
+4. Rename each file with a random time and encrypt it.
+   - Encryption process: `enc[i] = file[i] ^ key1[i] ^ key2[i]`.
+5. Enumerate all files again and update their names with the `.tort` extension.
+6. Before exiting, restore the system time to its initial state.
+
+Because it updates the time before encrypting the files, it leaves a trace in the log files that could potentially be used to recover key.
+
 
 ![alt text](./assests/image-216.png)
 ![alt text](./assests/image-217.png)
@@ -419,7 +433,7 @@ Search for the _`bf2f63b3`_
 
 Second Rename : _`bf2f6b3 -> 0cf51fbc`_
 
-> Sets the current system time and date. The system time is expressed in Coordinated Universal Time (UTC).
+> The system time is expressed in Coordinated Universal Time (UTC).
 
 Rename Time(Encryption Key) : _`2010-02-26 12:38:43.0000000 `_
 
@@ -431,7 +445,8 @@ Enc Key : 2010 2 2 26 12 38 43 0
 
 Third Rename : _`0cf51fbc -> 0cf51fbc.tort`_
 
-> **Similarly, locate the encryption timestamp for all other files and then extract those files.**
+> Likewise, find the timestamp used for encryption on all remaining files, and proceed to extract those files accordingly.
+
 
 `binary-01.gif -> c7982ef6 -> a917438f -> a917438f.tort` : **1995 2 2 27 2 11 42 0**
 
@@ -745,7 +760,7 @@ if __name__ == "__main__":
 
 ![alt text](assests/image-37.png)
 
-```js
+```py
 da8ed3e98eb5a2ba769ea60b48b0f6eb  15005-39026.pdf
 d58621ce6e560ba1c045892aef0b5f8b  binary-01.gif
 683092bd6640e62a3dc49b412da4fe71  Everest Vista.webp
@@ -758,8 +773,8 @@ bc9a53c83976e9779bce2d0635f1bbbe  so-cappy.jpg
 
 ### Final Ans
 
-```js
-;[
+```py
+[
   ['da8ed3e98eb5a2ba769ea60b48b0f6eb'],
   ['d58621ce6e560ba1c045892aef0b5f8b'],
   ['683092bd6640e62a3dc49b412da4fe71'],
