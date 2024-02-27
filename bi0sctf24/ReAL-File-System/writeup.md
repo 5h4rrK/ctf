@@ -2,7 +2,7 @@
 
 Description 
 
-###### Here are some extra materials you might find useful
+###### Here are some extra materials you might find useful to read.
 
 - [Deletion Pattern in ReFS](https://www.sciencedirect.com/science/article/pii/S2666281723001191?ref=pdf_download&fr=RR-2&rr=857d87e5a8047866)
 
@@ -11,8 +11,6 @@ Description
 - [Reverse Engineering of ReFS](https://www.sciencedirect.com/science/article/pii/S1742287619301252?ref=pdf_download&fr=RR-2&rr=858e699298bd7868)
 
 - [Awesome ReFS Investigation tool](https://github.com/horensic/ARIN)
-
-- [ReFS Detector](https://github.com/jamemanionda/ReFS_Detector)
 
 ### Fix FileSystem
 
@@ -36,7 +34,7 @@ Description
 
 ![alt text](assests/image.png)
 
-- Everything is working fine when loading it into `Active Disk Editor`
+- Loading it into `Active Disk Editor` appears to be functioning smoothly.
 
 ![alt text](assests/image-200.png)
 
@@ -761,7 +759,7 @@ bc9a53c83976e9779bce2d0635f1bbbe  so-cappy.jpg
 ### Final Ans
 
 ```js
-[
+;[
   ['da8ed3e98eb5a2ba769ea60b48b0f6eb'],
   ['d58621ce6e560ba1c045892aef0b5f8b'],
   ['683092bd6640e62a3dc49b412da4fe71'],
