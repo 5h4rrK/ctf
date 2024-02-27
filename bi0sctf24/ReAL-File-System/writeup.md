@@ -785,3 +785,6 @@ bc9a53c83976e9779bce2d0635f1bbbe  so-cappy.jpg
   ['4d9c5a006c4315625c86d94a8fd9fd2e'],
 ]
 ```
+
+
+**Flag** :  `bi0sctf{ReAL_1_w0nd3r_wHa7_t1m3_is_17_14dbc653fdb414c1d}`
