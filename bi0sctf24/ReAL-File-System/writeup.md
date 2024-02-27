@@ -196,9 +196,9 @@ OR,
 
 Simple Deletion Timestamp can be found through analyzing `$IXXXXX`
 
-![alt text](image-14.png)
+![alt text](./assests/image-214.png)
 
-![alt text](image-15.png)
+![alt text](./assests/image-215.png)
 
 **Final Ans**
 
