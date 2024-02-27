@@ -101,7 +101,7 @@ In a desperate bid to synchronize my PC clock, I unwittingly downloaded an appli
 
 ## Example 2
 
-![alt text](image.png)
+![alt text](./assests/image-211.png)
 
 ![alt text](./assests/image-212.png)
 _Figure Source: ARIN_
