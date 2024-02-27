@@ -1,6 +1,11 @@
 ## Writeup
 
-Description
+**Description**
+
+In a desperate bid to synchronize my PC clock, I unwittingly downloaded an application that promised a quick fix but instead wrought havoc by encrypting all my important files. Turning to my DFIR friend for help, his attempts to decipher the encrypted mess only worsened the situation, leaving the filesystem corrupted. My friend told me that only a DFIR expert can help recover my files. I'm filled with hope for their assistance in fixing my computer catastrophe.
+
+![alt text](./assests/image-334.png)
+
 
 ###### Here are some extra materials you might find useful
 
