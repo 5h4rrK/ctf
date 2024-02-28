@@ -7,6 +7,41 @@ In a desperate bid to synchronize my PC clock, I unwittingly downloaded an appli
 ![alt text](./assests/image-334.png)
 
 
+
+Questions 
+___
+**Question 1: List all directories that have been renamed, including their original names and the timestamps of when they were renamed.**
+
+    TimeZone - UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
+    Format - [ ['OriginalDirName', 'RenamedDirName', 'TimeStamp'] , .. ]
+
+**Question 2: Name all the deleted directories with deletion timestamps.**
+
+    TimeZone : UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
+    Format - [ ['DirectoryName' , 'TimeStamp'] , .. ]
+
+**Question 3: List all directories with their creation times, including originals if any that have been renamed or deleted.**
+
+    TimeZone : UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
+    Format - [ ['DirectoryName' , 'CreatedTime'] , .... ]
+
+**Question 4: Recover the files that have been deleted, and provide the md5sum of each recovered file.**
+
+    Format - [ ['filehash1'] , ['filehash2'], ... ]
+
+**Question 5: Identify all files that have been deleted (Simple + Permanent), including their deletion timestamps.**
+
+    TimeZone : UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
+    Format - [ [ 'filename' , 'TimeStamp' , 'Simple/Permanent' ] , .. ]
+
+**Question 6: Restore all encrypted files, decrypt them, and provide the md5sum of each decrypted file after removing any extra bytes before computing the hash.**
+
+    Format - [ ['hash1'] , ['hash2'], ',..]
+
+
+
+
+
 ###### Here are some extra materials you might find useful
 
 - [Deletion Pattern in ReFS](https://www.sciencedirect.com/science/article/pii/S2666281723001191?ref=pdf_download&fr=RR-2&rr=857d87e5a8047866)
