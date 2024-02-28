@@ -4,43 +4,51 @@
 
 In a desperate bid to synchronize my PC clock, I unwittingly downloaded an application that promised a quick fix but instead wrought havoc by encrypting all my important files. Turning to my DFIR friend for help, his attempts to decipher the encrypted mess only worsened the situation, leaving the filesystem corrupted. My friend told me that only a DFIR expert can help recover my files. I'm filled with hope for their assistance in fixing my computer catastrophe.
 
-![alt text](./assests/image-334.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-334.png)
 
+Questions
 
+---
 
-Questions 
-___
-**Question 1: List all directories that have been renamed, including their original names and the timestamps of when they were renamed.**
+## **Question 1**
+
+**List all directories that have been renamed, including their original names and the timestamps of when they were renamed.**
 
     TimeZone - UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
     Format - [ ['OriginalDirName', 'RenamedDirName', 'TimeStamp'] , .. ]
 
-**Question 2: Name all the deleted directories with deletion timestamps.**
+## **Question 2**
+
+**Name all the deleted directories with deletion timestamps.**
 
     TimeZone : UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
     Format - [ ['DirectoryName' , 'TimeStamp'] , .. ]
 
-**Question 3: List all directories with their creation times, including originals if any that have been renamed or deleted.**
+## **Question 3**
+
+**List all directories with their creation times, including originals if any that have been renamed or deleted.**
 
     TimeZone : UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
     Format - [ ['DirectoryName' , 'CreatedTime'] , .... ]
 
-**Question 4: Recover the files that have been deleted, and provide the md5sum of each recovered file.**
+## **Question 4**
+
+**Recover the files that have been deleted, and provide the md5sum of each recovered file.**
 
     Format - [ ['filehash1'] , ['filehash2'], ... ]
 
-**Question 5: Identify all files that have been deleted (Simple + Permanent), including their deletion timestamps.**
+## **Question 5**
+
+**Identify all files that have been deleted (Simple + Permanent), including their deletion timestamps.**
 
     TimeZone : UTC(+05:30) [YYYY-MM-DD HH:MM:SS.XX]
     Format - [ [ 'filename' , 'TimeStamp' , 'Simple/Permanent' ] , .. ]
 
-**Question 6: Restore all encrypted files, decrypt them, and provide the md5sum of each decrypted file after removing any extra bytes before computing the hash.**
+## **Question 6**
+
+**Restore all encrypted files, decrypt them, and provide the md5sum of each decrypted file after removing any extra bytes before computing the hash.**
 
     Format - [ ['hash1'] , ['hash2'], ',..]
-
-
-
-
 
 ###### Here are some extra materials you might find useful
 
@@ -58,71 +66,71 @@ ___
 
 - `Active Disk Editor` supports the Resilient File System, so can be used for loading the image to verify whether it's corrupted or not.
 
-![alt text](assests/image-200.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-200.png)
 
 ##### Let's begin repairing the file system.
 
-![alt text](assests/image-104.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-104.png)
 
-![alt text](assests/image-106.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-106.png)
 
-![alt text](assests/image-109.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-109.png)
 
-![alt text](assests/image-107.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-107.png)
 
 `Cluster Size : 0x1000`
 
-![alt text](./assests/image-333.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-333.png)
 
 - The LCN(1) serves as a way to locate the associated SuperBlock, just like it does for the Checkpoint.
 
-- Within the system, there are three SuperBlocks and two Checkpoints. 
+- Within the system, there are three SuperBlocks and two Checkpoints.
 
 - Fixing either one of the SuperBlocks or Checkpoints will resolve the issue.
 
-![alt text](assests/image-101.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-101.png)
 
-![alt text](assests/image-102.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-102.png)
 
-![alt text](assests/image-103.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-103.png)
 
-![alt text](assests/image100.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image100.png)
 
-![alt text](assests/image.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image.png)
 
 - Everything is working fine when loading it into `Active Disk Editor`
 
-![alt text](assests/image-105.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-105.png)
 
 ## LogFile-Structure
 
-![alt text](assests/image-201.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-201.png)
 
 ### LogFile Entry Structure
 
-![alt text](assests/image-202.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-202.png)
 
 ## Explanation
 
-![alt text](assests/image-204.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-204.png)
 
 > Red Bounded Area -> `ReFS Entry Header`
 
 > Green Bounded Area -> `Log Entry Header `
 
-![alt text](assests/image-205.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-205.png)
 
-![alt text](assests/image-207.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-207.png)
 
 ### Redo Log Header
 
-![alt text](assests/image-208.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-208.png)
 
 `Redo Log Header Size : 0x38 bytes`
 
 ### Redo Data Offset Array
 
-![alt text](assests/image-209.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-209.png)
 
 `Tail Offset` : _indicates ending of data offset array_
 
@@ -132,13 +140,13 @@ ___
 
 ## Example 1
 
-![alt text](assests/image-210.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-210.png)
 
 ## Example 2
 
-![alt text](./assests/image-211.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-211.png)
 
-![alt text](./assests/image-212.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-212.png)
 _Figure Source: ARIN_
 
 #### Extracting Log Files from the File System
@@ -153,23 +161,21 @@ dd if=ReAL_File_System.001 skip=$((0x20001000)) count=$((0x200A7000 -0x20001000)
 
    > **Format :[ ['OriginalDirName', 'RenamedDirName', TimeStamp] , .. ]**
 
-
 To identify renamed directories, search for the opcodes associated with directory renaming. Following these opcodes' consecutive MLog entries will unveil the timestamps indicating when the renaming occurred.
-
 
 ```
 0x2 -> 0x2 -> 0x1 -> 0x1 -> 0x4
 ```
 
-![alt text](assests/image-38.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-38.png)
 
-![alt text](assests/image-39.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-39.png)
 
 Timestamp will be found in next `MLog` (starting with opcode `0x4`).
 
-![alt text](assests/image-55.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-55.png)
 
-![alt text](assests/image-40.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-40.png)
 
 `['e88e52cac', '88077a4a1370', '2024-02-18 13:10:20.49']`
 
@@ -190,22 +196,19 @@ Similarly,
 
    > **Format : [ ['DirectoryName' , 'TimeStamp'] , .. ]**
 
-
-
 ```bash
 0x2 -> 0xf -> 0x2 -> 0xf -> 0x4 -> 0x12
 ```
 
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-44.png)
 
-![alt text](assests/image-44.png)
-
-![alt text](assests/image-41.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-41.png)
 
 Remaining opcodes can be found in `MLog`.
 
-![alt text](assests/image-42.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-42.png)
 
-![alt text](assests/image-43.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-43.png)
 
 **Permanently Deleted Directories**
 
@@ -225,19 +228,19 @@ P(Directory Creation) → 0x06 → 0x04 → 0x04 → 0x04 → 0x04 → 0x03 → 
 
 </details>
 
-![alt text](./assests/image-213.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-213.png)
 
-![alt text](assests/image-45.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-45.png)
 
-![alt text](assests/image-50.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-50.png)
 
-![alt text](assests/image-52.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-52.png)
 
-![alt text](assests/image-48.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-48.png)
 
-![alt text](assests/image-46.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-46.png)
 
-![alt text](assests/image-47.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-47.png)
 
 ```py
  ['c062fb828', '2024-02-18 13:10:48.62']
@@ -247,9 +250,9 @@ OR,
 
 Simple Deletion Timestamp can be found through analyzing `$IXXXXX`
 
-![alt text](./assests/image-214.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-214.png)
 
-![alt text](./assests/image-215.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-215.png)
 
 **Final Ans**
 
@@ -280,11 +283,11 @@ Simple Deletion Timestamp can be found through analyzing `$IXXXXX`
 
 </details>
 
-![alt text](assests/image-53.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-53.png)
 
-![alt text](assests/image-54.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-54.png)
 
-![alt text](assests/image-56.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-56.png)
 
 **_Final Ans_**
 
@@ -309,7 +312,7 @@ Simple Deletion Timestamp can be found through analyzing `$IXXXXX`
 
 Load the disk image in `Active Disk Editor`
 
-![alt text](assests/image-57.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-57.png)
 
 - `$IXXXXX` file has components like filename, fullpath , deletion time etc.
 
@@ -317,11 +320,11 @@ Load the disk image in `Active Disk Editor`
 
 - 3 files are simply deleted.
 
-![alt text](assests/image-59.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-59.png)
 
-![alt text](assests/image-60.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-60.png)
 
-![alt text](assests/image-58.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-58.png)
 
 ```bash
 dd if=ReAL_File_System.001 skip=$(((0x1000 * 71168)/1)) count=$(((0x15a)/1))  bs=1 of=simple-pass.txt
@@ -357,25 +360,25 @@ c50c5bcb9e98537e3d63df1bc68a81d0  fe0c329
 
 **_Simple Deletion_**
 
-![alt text](assests/image-63.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-63.png)
 
 **_Permanent Deletion_**
 
-![alt text](assests/image-62.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-62.png)
 
-![alt text](assests/image-61.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-61.png)
 
 #### simple-pass.txt
 
-![alt text](assests/image-64.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-64.png)
 
-![alt text](assests/image-66.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-66.png)
 
-![alt text](assests/image-67.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-67.png)
 
 TimeStamp
 
-![alt text](assests/image-68.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-68.png)
 
 `2024-02-18 13:15:00.51`
 
@@ -393,9 +396,9 @@ In the same manner, examine the log file for each alternate file.
 0x0f->0x02->0x0f->0x02->0x04
 ```
 
-![alt text](assests/image-69.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-69.png)
 
-![alt text](assests/image-70.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-70.png)
 
 ```bash
 ('ead47cb','2024-02-18 13:19:26.69','Permanent')
@@ -435,14 +438,14 @@ In the same manner, examine the log file for each alternate file.
 
 Because it updates the time before encrypting the files, it leaves a trace in the log files that could potentially be used to recover key.
 
-![alt text](./assests/image-216.png)
-![alt text](./assests/image-217.png)
-![alt text](./assests/image-218.png)
-![alt text](./assests/image-219.png)
-![alt text](./assests/image-220.png)
-![alt text](./assests/image-221.png)
-![alt text](./assests/image-222.png)
-![alt text](./assests/image-223.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-216.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-217.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-218.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-219.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-220.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-221.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-222.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-223.png)
 
 > Opcode for Renamed File : **`0x02 → 0x05 → 0x01 → 0x04 → 0x04`**
 
@@ -452,21 +455,21 @@ Because it updates the time before encrypting the files, it leaves a trace in th
 
 - After locating it, we'll parse the data and examine the previous MLog to find the corresponding filenames.
 
-![alt text](assests/image-1.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-1.png)
 
-![alt text](assests/image-2.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-2.png)
 
-![alt text](assests/image-3.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-3.png)
 
 First Rename : _`15005-39026.pdf -> bf2f63b3`_
 
 Search for the _`bf2f63b3`_
 
-![alt text](assests/image-5.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-5.png)
 
-![alt text](assests/image-6.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-6.png)
 
-![alt text](assests/image-7.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-7.png)
 
 Second Rename : _`bf2f6b3 -> 0cf51fbc`_
 
@@ -478,7 +481,7 @@ Rename Time(Encryption Key) : _`2010-02-26 12:38:43.0000000 `_
 Enc Key : 2010 2 2 26 12 38 43 0
 ```
 
-![alt text](assests/image-8.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-8.png)
 
 Third Rename : _`0cf51fbc -> 0cf51fbc.tort`_
 
@@ -500,7 +503,7 @@ Third Rename : _`0cf51fbc -> 0cf51fbc.tort`_
 
 ---
 
-![alt text](./assests/image-224.png)
+![alt text](https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests/image-224.png)
 
 ### Carving Out Files
 
@@ -508,11 +511,11 @@ Third Rename : _`0cf51fbc -> 0cf51fbc.tort`_
 
 Let's take a look at it using Active Disk Editor.
 
-![alt text](assests/image-20.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-20.png)
 
-![alt text](assests/image-21.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-21.png)
 
-![alt text](assests/image-22.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-22.png)
 
 ```bash
 dd if=ReAL_File_System.001 skip=$(((0x10e94000)/4096)) count=$(((0x16c000)/4096))  bs=4096 of=0cf51fbc_1.tort
@@ -530,17 +533,17 @@ dd if=ReAL_File_System.001 skip=$(((0x10025000)/64)) count=$(((0x89ce40)/64))  b
 
 After extracting the encrypted files, remove any additional bytes.
 
-![alt text](assests/image-28.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-28.png)
 
 ---
 
 ###### 7a6c7166.tort
 
-![alt text](assests/image-30.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-30.png)
 
-![alt text](assests/image-29.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-29.png)
 
-![alt text](assests/image-32.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-32.png)
 
 Go to offset `0x108c2000`, `0x10c05000` & read `830 * 0x1000` ,`130 * 0x1000`bytes respectively
 
@@ -609,7 +612,7 @@ for _ in file_names:
 
 ```
 
-![alt text](assests/image-24.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-24.png)
 
 ```cpp
 #include <iostream>
@@ -793,7 +796,7 @@ if __name__ == "__main__":
 
 ```
 
-![alt text](assests/image-37.png)
+![alt text]https://github.com/5h4rrK/ctf/blob/main/bi0sctf24/ReAL-File-System/assests(image-37.png)
 
 ```py
 da8ed3e98eb5a2ba769ea60b48b0f6eb  15005-39026.pdf
@@ -821,5 +824,4 @@ bc9a53c83976e9779bce2d0635f1bbbe  so-cappy.jpg
 ]
 ```
 
-
-**Flag** :  `bi0sctf{ReAL_1_w0nd3r_wHa7_t1m3_is_17_14dbc653fdb414c1d}`
+**Flag** : `bi0sctf{ReAL_1_w0nd3r_wHa7_t1m3_is_17_14dbc653fdb414c1d}`
